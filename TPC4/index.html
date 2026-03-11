@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Academia de Patinagem | Deslize com Estilo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* O CSS começa aqui */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Cor de fundo suave */
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+        }
+
+        /* O "Pai" que coloca os itens lado a lado */
+        .header-content {
+            display: flex; 
+            align-items: center; /* Alinha verticalmente ao centro */
+            justify-content: center; /* Centraliza o conjunto todo na página */
+            gap: 20px; /* Cria um espaço entre a imagem e o texto */
+        }
+
+        /* Estilo da imagem para não ficar gigante */
+        .logo-topo {
+            width: 150px; /* Define um tamanho fixo para o logo */
+            height: auto;
+            border-radius: 50%; /* Se o logo for redondo, isto ajuda */
+        }
+
+        .titulo-grupo h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        .titulo-grupo p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+                /* O Contentor agora é invisível, serve apenas para organizar */
+        .container {
+            max-width: 900px; /* Largura máxima do texto */
+            margin: 0 auto;   /* Centraliza o bloco na página */
+            padding: 40px 20px; /* Espaço nas laterais para não colar no ecrã */
+        }
+
+        /* Títulos elegantes e limpos */
+        h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: left; /* Ou center, se preferires */
+        }
+
+        /* O texto principal */
+        p {
+            font-size: 1.1em;
+            line-height: 1.8; /* Dá ar ao texto para não ficar apertado */
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo da lista sem bonecos (opcional) */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 30px; /* Aumenta o espaço entre cada modalidade */
+            padding-left: 20px;  /* ESTA LINHA: Empurra o texto para a direita do traço */
+            border-left: 4px solid #e74c3c; /* O teu traço laranja */
+            list-style-type: none; /* Garante que não aparecem pontos pretos */
+        }
+
+        .btn-contato {
+            display: inline-block;
+            background-color: #e74c3c; /* Vermelho vibrante */
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s; /* Efeito ao passar o mouse */
+        }
+
+        .btn-contato:hover {
+            transform: scale(1.1); /* Aumenta um pouco no hover */
+            background-color: #c0392b;
+        }
+
+        .seccao-lado-a-lado {
+            display: flex !important; /* Força o comportamento de linha */
+            flex-direction: row;      /* Garante que os itens ficam em linha */
+            align-items: center;      /* Alinha o texto com o meio da imagem */
+            justify-content: space-between;
+            gap: 40px;                /* Espaço entre texto e imagem */
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .coluna-texto {
+            flex: 1;                 /* Ocupa metade do espaço */
+            text-align: left;
+        }
+
+        .coluna-imagem {
+            flex: 1;                 /* Ocupa a outra metade */
+            display: flex;
+            justify-content: center;
+        }
+
+        .coluna-imagem img {
+            width: 100%;             /* A imagem ajusta-se à coluna */
+            max-width: 450px;        /* Não deixa a imagem ficar gigante */
+            height: auto;
+            border-radius: 10px;     /* Cantos suaves */
+            display: block;
+        }
+
+        /* IMPORTANTE: Se o ecrã for pequeno (telemóvel), elas voltam a ficar uma por baixo da outra */
+        @media (max-width: 800px) {
+            .seccao-lado-a-lado {
+                flex-direction: column;
+            }
+        }
+
+        .conquistas {
+            background-color: #e3f2fd; /* Azul clarinho muito suave */
+            padding: 60px 0;           /* Espaço em cima e em baixo */
+            margin: 40px 0;            /* Afastamento das outras secções */
+            text-align: center;
+        }
+
+        .conquistas h2 {
+            margin-bottom: 40px;
+        }
+
+        .grid-conquistas {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .item-conquista small {
+            display: block;
+            font-size: 0.85em;
+            color: #444;
+            margin-top: 5px;
+            font-weight: normal;
+            line-height: 1.2;
+        }
+
+        /* Garante que os números/ícones se destacam */
+        .item-conquista span {
+            display: block;
+            font-size: 2.8em;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .braga-roller-team {
+            background-color: #0d0d0d;
+            color: #ffffff !important; /* Forcei o branco puro */
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .braga-roller-team h2 {
+            color: #ffffff !important;
+            font-size: 2.2em; /* Reduzi um pouco o título */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .braga-roller-team p {
+            font-size: 1.1em;
+            line-height: 1.8; /* Dá ar ao texto para não ficar apertado */
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .texto-longo {
+            font-size: 1.05em; /* Texto um pouco mais pequeno e elegante */
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            color: #ffffff !important; /* Branco total para o corpo do texto */
+            text-align: justify;
+        }
+
+        .destaque-cor {
+            color: #ff4d4d; /* Vermelho vibrante para realce */
+            font-weight: bold;
+        }
+
+        .grid-brt-limpo {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Reduzi o espaço para não espalhar tanto */
+            flex-wrap: wrap;
+        }
+
+        .item-brt b {
+            font-size: 1.2em; /* Título da conquista mais pequeno */
+            display: block;
+            margin-top: 10px;
+            color: #ffffff !important;
+        }
+
+        .item-brt span {
+            color: #ffffff !important; 
+            opacity: 0.7; /* Este continua branco, mas "mais baço" para ser secundário */
+            font-size: 0.85em; /* Descrição mais pequena */
+            display: block;
+            margin-top: 5px;
+        }
+
+        .galeria-dupla {
+            display: flex;       /* Coloca lado a lado */
+            gap: 20px;           /* Espaço entre as duas imagens */
+            margin: 40px auto;   /* Afastamento vertical */
+            max-width: 900px;    /* Alinha com a largura do teu texto */
+            padding: 0 20px;
+        }
+
+        .galeria-dupla img {
+            width: 50%;          /* Cada uma ocupa metade da largura */
+            height: 300px;       /* Altura fixa para ficarem iguais */
+            object-fit: cover;   /* Corta a imagem sem a "esmagar" */
+            border-radius: 8px;  /* Um toque suave nos cantos */
+        }
+
+        /* Ajuste para telemóvel: no ecrã pequeno ficam uma por cima da outra */
+        @media (max-width: 600px) {
+            .galeria-dupla {
+                flex-direction: column;
+            }
+            .galeria-dupla img {
+                width: 100%;
+            }
+        }
+
+        /* Nova regra para permitir o lado a lado */
+        .flex-layout {
+            display: flex;
+            align-items: center; /* Alinha o texto com o meio da imagem */
+            gap: 40px;           /* Espaço entre texto e imagem */
+            max-width: 1000px;   /* Um pouco mais largo que o container normal */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .flex-texto {
+            flex: 1.2; /* Dá um pouco mais de espaço ao texto */
+        }
+
+        .flex-imagem {
+            flex: 1; /* A imagem fica ligeiramente menor que o bloco de texto */
+        }
+
+        .flex-imagem img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px; /* Deixa a imagem bonita com cantos arredondados */
+            display: block;
+        }
+
+        /* Para garantir que no telemóvel a imagem não fique "esmagada" ao lado do texto */
+        @media (max-width: 800px) {
+            .flex-layout {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Barra de Navegação */
+        nav {
+            background-color: white;
+            padding: 15px 0;
+            position: sticky; /* Faz a barra ficar fixa no topo ao fazer scroll */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra suave igual à imagem */
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.3em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e74c3c; /* Cor de destaque ao passar o rato */
+        }
+
+        /* Ajuste de Contraste para a Secção Escura (Braga Roller Team) */
+        .braga-roller-team {
+            background-color: #0d0d0d;
+            color: #ffffff !important; /* Força o branco puro para ser legível */
+            padding: 80px 20px;
+        }
+
+        .braga-roller-team p, .braga-roller-team span, .braga-roller-team b {
+            color: #ffffff !important; /* Garante que nada fica cinzento escuro */
+        }
+
+        /* Contentor que limita a área de visualização */
+        .seccao-noticias-wrapper {
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        /* A "Fila" que contém todas as notícias */
+        .noticias-slider {
+            display: block;
+            white-space: nowrap; /* Força tudo a ficar na mesma linha */
+            overflow-x: auto;    /* Ativa o scroll horizontal */
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Esconder a barra de scroll em todos os navegadores */
+        .noticias-slider::-webkit-scrollbar { display: none; }
+        .noticias-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Cada cartão de notícia individual */
+        .cartao-noticia {
+            display: inline-block; /* Importante para o white-space funcionar */
+            vertical-align: top;
+            width: calc(33.33% - 20px); /* 3 notícias por ecrã */
+            min-width: 300px;           /* Não deixa ficarem demasiado pequenas */
+            margin-right: 20px;
+            white-space: normal;       /* Faz o texto dentro do cartão quebrar linhas normalmente */
+            scroll-snap-align: start;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cartao-noticia img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Ajuste para Telemóvel */
+        @media (max-width: 800px) {
+            .cartao-noticia {
+                width: 85%; /* No telemóvel, mostra uma e um pouco da próxima */
+            }
+        }
+
+        /* Contentor relativo para as setas não fugirem */
+        .noticias-container-relativo {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* O Slider (Fila de notícias) */
+        .noticias-slider {
+            display: flex;
+            overflow-x: hidden; /* Esconde a barra de scroll */
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        /* Estilo das Setas */
+        .seta-navegacao {
+            background-color: rgba(231, 76, 60, 0.8); /* Vermelho APB com transparência */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .seta-navegacao:hover { background-color: #e74c3c; }
+
+        .seta-esquerda { left: -70px; }
+        .seta-direita { right: -70px; }
+
+        /* Cartão da Notícia */
+        .cartao-noticia {
+            flex: 0 0 calc(33.33% - 14px); /* 3 por vez */
+            min-width: 300px;
+            text-decoration: none;
+            color: inherit;
+            text-align: left;
+        }
+
+        /* Ajuste para telemóvel */
+        @media (max-width: 800px) {
+            .cartao-noticia { flex: 0 0 85%; }
+            .seta-navegacao { display: none; } /* No telemóvel usa-se o dedo */
+            .noticias-slider { overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <img src="images/apb.jpg" alt="Academia de Patinagem de Braga" class="logo-topo">
+            <div class="titulo-grupo">
+                <h1>Academia de Patinagem de Braga</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#quem-somos">Clube</a>
+        <a href="#horarios">Iniciação</a>
+        <a href="#BRT">Braga Roller Team</a>
+        <a href="#noticias">Notícias</a>
+        <a href="#contactos">Contactos</a>
+    </nav>
+
+    <div class="flex-layout">
+        <div id="quem-somos" class="flex-texto">
+            <h2>Quem Somos</h2>
+            <p>Nascida no coração do Minho, a <b>Academia de Patinagem de Braga (APB)</b> é o único clube da cidade dedicado exclusivamente a esta modalidade. Somos uma família que conta já com <b>11 anos a fazer história</b>, unidos pelo movimento, pela arte e pela superação constante.</p>
+            
+            <p>O nosso foco não é apenas ensinar a patinar, mas sim promover o equilíbrio, a disciplina e a alegria que só as oito rodas podem proporcionar. Na APB, cada treino é uma oportunidade para crescer.</p>
+            
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px; padding-left: 20px; border-left: 4px solid #e74c3c;">
+                    <b>Para Todos:</b> Formação de atletas femininos e masculinos.
+                </li>
+                <li style="margin-bottom: 15px; padding-left: 20px; border-left: 4px solid #e74c3c;">
+                    <b>Desde cedo:</b> Inscrições abertas a partir dos 4 anos de idade.
+                </li>
+            </ul>
+            <div style="margin-top: 30px;">
+                <a href="#horarios" class="btn-contato">Vem experimentar uma aula de iniciação</a>
+            </div>
+        </div>
+    
+        <div class="flex-imagem">
+            <img src="images/atletas.jpg" alt="Atletas da APB">
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Nossas Modalidades</h2>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 25px;">
+                <b style="font-size: 1.2em; color: #e74c3c;">Iniciação</b>
+                <p style="margin-top: 5px;">O ponto de partida para todos os futuros patinadores. Aqui, o foco é o equilíbrio, a segurança e a superação do medo. Ensinamos as bases fundamentais — como deslizar, travar e cair corretamente — num ambiente divertido e lúdico.</p>
+            </li>
+    
+            <li style="margin-bottom: 25px;">
+                <b style="font-size: 1.2em; color: #e74c3c;">Patinagem Livre</b>
+                <p style="margin-top: 5px;">A vertente mais clássica e atlética da patinagem. Combina a técnica de patins com saltos e piruetas, exigindo força, agilidade e uma grande capacidade de concentração. É ideal para quem procura superar desafios técnicos constantes.</p>
+            </li>
+    
+            <li style="margin-bottom: 25px;">
+                <b style="font-size: 1.2em; color: #e74c3c;">Solo Dance</b>
+                <p style="margin-top: 5px;">Focada no ritmo e na expressão artística individual. Nesta modalidade, o patinador executa sequências de passos ao som de diferentes estilos musicais, priorizando a elegância, a precisão do movimento e a interpretação da música.</p>
+            </li>
+    
+            <li style="margin-bottom: 25px;">
+                <b style="font-size: 1.2em; color: #e74c3c;">Show e Precisão</b>
+                <p style="margin-top: 5px;">
+                    Onde a patinagem se cruza com o teatro e o espetáculo. Em grupo, os patinadores contam uma história através de uma coreografia ensaiada, com fatos detalhados e um forte impacto visual. É a expressão máxima do espírito de equipa da nossa Academia. 
+                    Para esta modalidade foi criada uma nova equipa que junta atletas de várias equipas, o 
+                    <a href="#BRT" style="color: inherit; text-decoration: none;"><b>Braga Roller Team</b></a>.
+                </p>
+            </li>
+        </ul>
+    </div>
+
+    <section class="conquistas">
+        <div class="container">
+            <h2>As Nossas Conquistas</h2>
+            <p>Mais do que medalhas, celebramos a evolução dos nossos atletas e o orgulho de levar o nome de Braga aos pódios nacionais.</p>
+            
+            <div class="grid-conquistas">
+                <div class="item-conquista">
+                    <span>150+</span>
+                    <p>Atletas Ativos</p>
+                    <small>Dos 4 aos 24 anos</small>
+                </div>
+                
+                <div class="item-conquista">
+                    <span>🏆</span>
+                    <p>Campeões Nacionais</p>
+                    <small>Grupos Grandes (Show e Precisão)</small>
+                </div>
+                
+                <div class="item-conquista">
+                    <span>🥇</span>
+                    <p>Pares Artísticos</p>
+                    <small>Campeões Nacionais Iniciados e Juvenis</small>
+                </div>
+    
+                <div class="item-conquista">
+                    <span>11</span>
+                    <p>Anos de História</p>
+                    <small>A formar campeões em Braga</small>
+                </div>
+            </div>
+        </div>
+        <a href="#contactos" class="btn-contato">Vem fazer parte desta história</a>
+    </section>
+
+    <div id="horarios" class="container">
+        <h2>Horários de Iniciação</h2>
+        
+        <p style="margin-bottom: 30px;">
+            <strong>Não tens patins? Nós emprestamos!</strong> <br>
+            Nas primeiras aulas de experiência, garantimos o equipamento necessário para que possas começar logo a deslizar. Junta-te à nossa família a partir dos 4 anos.
+        </p>
+    
+        <ul style="list-style: none; padding: 0;">
+            <li style="border-left: 4px solid #e74c3c; padding-left: 15px; margin-bottom: 15px;">
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <b>Quarta-feira:</b> 17:20h às 18:45h
+            <li style="border-left: 4px solid #e74c3c; padding-left: 15px; margin-bottom: 15px;">
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <b>Sábado:</b> 15h às 16h
+            </li>
+        </ul>
+    
+        <div style="text-align: center; margin-top: 40px;">
+            <p><i>Inscrições abertas durante todo o ano!</i></p>
+            <a href="https://wa.me/351926374613" class="btn-contato" target="_blank">
+                <i class="fa fa-whatsapp"></i> Reservar aula experimental gratuita
+            </a>
+        </div>
+    </div>
+
+    <section class="braga-roller-team">
+        <div id="BRT" class="container">
+            <h2>Braga Roller Team</h2>
+            
+            <div class="texto-longo">
+                <p>
+                    Nós somos a <b>Braga Roller Team</b>, uma equipa que nasceu da paixão pela patinagem artística e que hoje se afirma como uma referência incontornável no panorama do <span class="destaque-cor">Show e Precisão (Grupos Grandes)</span>. Com base na Academia de Patinagem de Braga, o nosso projeto distingue-se pela união estratégica de talentos provenientes de quatro academias de renome: <b>AP Braga, AP Guimarães, Gondomar e Coimbrões</b>.
+                </p>
+                <p>
+                    A nossa estrutura é composta por cerca de 24 atletas que, sob a orientação da experiente dupla <b>Santiago e Carolina</b>, elevam a patinagem a uma forma de arte cénica. O nosso percurso tem sido pautado por uma ambição constante de superação, com o objetivo claro de nos fixarmos no <b>Top 5 do ranking Europeu</b>.
+                </p>
+            </div>
+    
+            <div class="grid-brt-limpo">
+                <div class="item-brt">
+                    <span style="font-size: 3em;">🏆</span>
+                    <b>4x Campeões Nacionais</b>
+                    <span>Títulos conquistados em 2017 e entre 2023 e 2025</span>
+                </div>
+    
+                <div class="item-brt">
+                    <span style="font-size: 3em;">🥉</span>
+                    <b>Medalha Mundial</b>
+                    <span>Bronze na Taça do Mundo de 2022</span>
+                </div>
+    
+                <div class="item-brt">
+                    <span style="font-size: 3em;">🌍</span>
+                    <b>Elite Europeia</b>
+                    <span>Presença assídua no topo continental</span>
+                </div>
+            </div>
+
+            <div class="galeria-dupla">
+                <img src="images/2024.jpg" alt="Atletas da APB em treino">
+                <img src="images/2025.jpg" alt="Braga Roller Team em competição">
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias" class="container">
+        <h2>Últimas Notícias</h2>
+        <div class="noticias-container-relativo">
+            <button class="seta-navegacao seta-esquerda" onclick="deslizarEsquerda()">❮</button>
+            <div class="noticias-slider" id="sliderNoticias">
+                
+                <a href="https://desportivodominho.com/2025/05/05/margarida-rodrigues-e-rita-ribeiro-apb-campeas-distritais-de-patinagem-livre/" target="_blank" class="cartao-noticia">
+                    <img src=https://desportivodominho.com/wp-content/uploads/2025/05/AP-Braga-Infantis.jpg alt="Campeãs Livre">
+                    <span style="color:#e74c3c; font-size:0.8em; font-weight:bold; padding:0 15px;">05 MAI 2025</span>
+                    <h3>APB conquista dois títulos Distritais</h3>
+                    <p>Margarida Rodrigues e Rita Ribeiro sagraram-se campeãs distritais de Patinagem Livre.</p>
+                </a>
+
+                <a href="https://desportivodominho.com/2025/05/03/carolina-fernandes-apb-e-miguel-alves-adcrmp-campeoes-distritais-de-solo-dance-em-infantis/" target="_blank" class="cartao-noticia">
+                    <img src=https://desportivodominho.com/wp-content/uploads/2025/05/Carolina-Fernandes-apb3.jpg alt="Carolina Fernandes APB">
+                    <span style="color:#e74c3c; font-size:0.8em; font-weight:bold; padding:0 15px;">03 MAI 2025</span>
+                    <h3>Carolina Fernandes Campeã Distrital</h3>
+                    <p>A atleta da APB conquistou o título de Solo Dance (Infantis) em Famalicão.</p>
+                </a>
+
+                <a href="https://desportivodominho.com/2025/03/14/susana-pires-ap-braga-faz-balanco-positivo-do-1-o-open/" target="_blank" class="cartao-noticia">
+                    <img src="https://desportivodominho.com/wp-content/uploads/2025/03/Margarida-Rodrigues-apb1.jpg" alt="Open Nacional">
+                    <span style="color:#e74c3c; font-size:0.8em; font-weight:bold; padding:0 15px;">14 MAR 2025</span>
+                    <h3>Balanço positivo no 1.º Open Nacional</h3>
+                    <p>Margarida Rodrigues alcançou o apuramento direto para o Campeonato Nacional.</p>
+                </a>
+
+                <a href="https://desportivodominho.com/2024/05/09/braga-roller-team-motivado-para-o-europeu-de-show-e-precisao/" target="_blank" class="cartao-noticia">
+                    <img src="https://desportivodominho.com/wp-content/uploads/2024/05/Braga-Rooler-team-Show-1536x1152.jpg" style="width:100%; height:180px; object-fit:cover; border-radius:12px 12px 0 0;">
+                    <span style="color:#e74c3c; font-size:0.8em; font-weight:bold; padding:0 15px;">09 MAI 2024</span>
+                    <h3>Braga Roller Team motivado para o Europeu</h3>
+                    <p style="font-size:0.9em; padding:0 15px; color:#666; line-height:1.4;">A nossa equipa de Show e Precisão viajou para Reggio Emilia, Itália, para representar Portugal no Campeonato da Europa.</p>
+                </a>
+
+            </div>
+            <button class="seta-navegacao seta-direita" onclick="deslizarDireita()">❯</button>
+        </div>
+    </section>
+ 
+
+    <section id="contactos" class="container">
+        <h2>Onde Estamos</h2>
+        <p>Vem visitar-nos e conhecer a nossa pista!</p>
+        
+        <div style="margin-bottom: 30px;">
+            <p><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Morada:</b> Pavilhão Desportivo da Casa do Povo de Adaúfe, Adaúfe, Portugal, Braga</p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i> <b>Telemóvel:</b> +351 926 374 613 </p>
+            <p><i class="fa fa-envelope-open" aria-hidden="true"></i> <b>E-mail:</b> academia.patinagem.braga@gmail.com</p>
+            
+            <p>
+                <i class="fa fa-instagram" aria-hidden="true"></i> 
+                <b>Instagram:</b> 
+                <a href="https://www.instagram.com/academiapatinagembraga/" target="_blank" style="color: inherit; text-decoration: none;">@academia.patinagem.braga</a>
+            </p>
+            
+            <p>
+                <i class="fa fa-facebook-official" aria-hidden="true"></i> 
+                <b>Facebook:</b> 
+                <a href="https://www.facebook.com/AcademiaPatinagemBraga" target="_blank" style="color: inherit; text-decoration: none;">Academia de Patinagem de Braga</a>
+            </p>
+        </div>
+
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="https://www.google.com/maps/search/?api=1&query=Pavilhão+Desportivo+da+Casa+do+Povo+de+Adaúfe" target="_blank" style="background-color: #2c3e50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                Abrir no Google Maps
+            </a>
+        </div>
+    </section>
+    
+    <footer style="text-align: center; padding: 40px; color: #888; font-size: 0.9em;">
+        <p>&copy; 2024 Academia de Patinagem de Braga. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const slider = document.getElementById('sliderNoticias');
+    
+        function deslizarDireita() {
+            const larguraItem = document.querySelector('.cartao-noticia').offsetWidth + 40;
+            slider.scrollBy({ left: larguraItem, behavior: 'smooth' });
+        }
+    
+        function deslizarEsquerda() {
+            const larguraItem = document.querySelector('.cartao-noticia').offsetWidth + 40;
+            slider.scrollBy({ left: -larguraItem, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
