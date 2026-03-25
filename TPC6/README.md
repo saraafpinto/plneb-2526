@@ -1,3 +1,24 @@
-Este script utiliza a biblioteca spaCy para realizar o reconhecimento de entidades nomeadas no texto do livro *Harry Potter e a Pedra Filosofal*. O objetivo principal é identificar personagens (entidades do tipo "PER") e analisar as suas relações com base na coocorrência em frases.
+### Descrição
+Este script utiliza a biblioteca spaCy para realizar Reconhecimento de Entidades Nomeadas (NER) num texto do livro Harry Potter e a Pedra Filosofal.
 
-Após o processamento do texto com o modelo `pt_core_news_sm`, o programa percorre cada frase do documento e extrai as personagens mencionadas nessa frase, garantindo que não há repetições dentro da mesma. Em seguida, para cada conjunto de personagens presentes, são contabilizadas as coocorrências entre todos os pares distintos, incrementando um contador sempre que duas personagens aparecem juntas na mesma frase. O resultado final é uma estrutura que reflete a frequência com que cada personagem surge em conjunto com outras ao longo do texto.
+O objetivo é identificar personagens (entidades do tipo "PER") e calcular quantas vezes cada par de personagens aparece na mesma frase.
+
+### Funcionamento
+O texto é processado com o modelo pt_core_news_sm do spaCy
+- Para cada frase (doc.sents):
+    - São extraídas todas as personagens presentes
+    - São contabilizadas as coocorrências entre todas as personagens da frase
+
+- Os resultados são armazenados num dicionário onde:
+    - Cada personagem é uma chave
+    - O valor é outro dicionário com o número de coocorrências com outras personagens
+
+### Output
+O resultado é guardado no ficheiro amigos.json com a seguinte estrutura:
+
+{
+  "Harry": {
+    "Ron": 10,
+    "Hermione": 8
+  }
+}
