@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>MedDic - Home Page</title>
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="px-4 py-5 text-center hero-section shadow-sm">
+            <h1 class="display-5 fw-bold text-body-emphasis mb-4">Dicionário de Termos Médicos</h1>
+            <div class="col-lg-7 mx-auto">
+                <p class="lead mb-4">
+                    Explore a nossa base de dados completa de conceitos clínicos e terminologia médica, 
+                    organizados de <strong>A a Z</strong> para facilitar a sua consulta académica e profissional.
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/conceitos" class="btn btn-primary btn-lg px-4 gap-3 shadow">Explorar Conceitos</a>
+                    <a href="/saber_mais" class="btn btn-outline-secondary btn-lg px-4 shadow-sm">
+                        Saiba Mais
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col text-center">
+                <div class="feature-icon">📚</div>
+                <h3 class="fs-4 text-body-emphasis">Ordem Alfabética</h3>
+                <p>Navegação intuitiva baseada no alfabeto para encontrar rapidamente o termo que procura.</p>
+            </div>
+            <div class="feature col text-center">
+                <div class="feature-icon">🔬</div>
+                <h3 class="fs-4 text-body-emphasis">Rigor Técnico</h3>
+                <p>Conteúdo validado para as unidades curriculares de Medicina.</p>
+            </div>
+            <div class="feature col text-center">
+                <div class="feature-icon">⚡</div>
+                <h3 class="fs-4 text-body-emphasis">Acesso Rápido</h3>
+                <p>Otimizado para pesquisas instantâneas em qualquer dispositivo ou navegador.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

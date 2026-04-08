@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>Glossário Médico - A-Z</title>
+    <style>
+        /* Ajuste para o salto da âncora não ficar tapado */
+        [id^="section-"] {
+            scroll-margin-top: 100px;
+        }
+        .alphabet-btn {
+            width: 35px; 
+            height: 35px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .alphabet-btn:hover {
+            transform: scale(1.1);
+        }
+        .concept-card {
+            transition: 0.2s;
+            border-left: 4px solid #dee2e6;
+            text-decoration: none;
+            display: block;
+        }
+        .concept-card:hover {
+            border-left: 4px solid #0d6efd;
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-primary">Dicionário de Conceitos</h1>
+        <p class="text-muted">Clique numa letra para navegar pelos termos médicos.</p>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center mb-5 p-3 bg-white shadow-sm rounded-4 sticky-nav">
+        {% for letra in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <a href="#section-{{ letra }}" class="btn btn-outline-primary btn-sm m-1 alphabet-btn rounded-circle">
+                {{ letra }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            {% for letra in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                
+                {# Criamos uma secção para cada letra #}
+                <div id="section-{{ letra }}" class="mb-5">
+                    <h2 class="display-6 fw-bold border-bottom pb-2 mb-4 text-secondary">{{ letra }}</h2>
+                    
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                        {% set ns = namespace(encontrou=false) %}
+                        
+                        {% for conceito in conceitos|sort %}
+                            {# Comparamos a primeira letra do conceito com a letra do loop #}
+                            {% if conceito|upper|first == letra %}
+                                <div class="col">
+                                    <a href="/conceitos/{{conceito}}" class="concept-card card h-100 shadow-sm border-0">
+                                        <div class="card-body py-3">
+                                            <h6 class="card-title mb-0 text-dark">{{ conceito }}</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% set ns.encontrou = true %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if not ns.encontrou %}
+                            <div class="col-12">
+                                <p class="text-muted small"><i>Não existem conceitos com a letra {{ letra }}.</i></p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
