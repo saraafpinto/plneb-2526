@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>Pesquisa</title>
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-10">
+            <h2 class="fw-bold text-center mb-4">Pesquisa</h2>
+            
+            <form action="/pesquisar" method="GET" class="card p-4 shadow-sm border-0 bg-light">
+                <div class="input-group input-group-lg mb-3">
+                    <input type="text" name="query" class="form-control" placeholder="O que procura?" value="{{ query }}" required>
+                    <button class="btn btn-primary px-4" type="submit">Procurar</button>
+                </div>
+
+                <div class="d-flex gap-4 justify-content-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="case_sensitive" id="caseCheck" {% if case_sensitive %}checked{% endif %}>
+                        <label class="form-check-label" for="caseCheck">Case Sensitive</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="word_boundary" id="wordCheck" {% if word_boundary %}checked{% endif %}>
+                        <label class="form-check-label" for="wordCheck">Palavra Exata</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if query %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm p-3">
+                <table id="tabela_conceitos" class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 20%;">Designação</th>
+                            <th>Descrição</th>
+                            <th class="text-center">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for res in resultados %}
+                        <tr>
+                            <td>{{ res.desig_label | safe }}</td>
+                            
+                            <td class="text-muted">{{ res.descricao | safe }}</td>
+                            
+                            <td class="text-center">
+                                <a href="/conceitos/{{ res.designacao }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                                    Ver mais
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

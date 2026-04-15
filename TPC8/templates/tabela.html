@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title> Tabela de conceitos médicos </title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<table id="tabela_conceitos" class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Designação</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for conceito in conceitos %}
+        <tr>
+            <td>{{conceito}}</td>
+            <td>{{conceitos[conceito]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
