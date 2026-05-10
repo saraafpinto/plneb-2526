@@ -9,18 +9,19 @@ O objetivo deste trabalho é calcular a pontuação de relevância de uma coleç
     
 ### Metodologia
 O pipeline de processamento segue os seguintes passos:
-    1. Pré-processamento: Utilizando a biblioteca spaCy (modelo en_core_web_sm), os textos são normalizados através de:
+    
+1. Pré-processamento: Utilizando a biblioteca spaCy (modelo en_core_web_sm), os textos são normalizados através de:
         - Tokenização.
         - Conversão para minúsculas.
         - Remoção de pontuação e espaços.
         - Remoção de stop words (palavras gramaticais sem valor semântico como "the", "is", "in").
         
-    2. Vetorização (Espaço Vetorial): Cada documento e a query são convertidos em vetores numéricos num espaço n-dimensional, onde n é o tamanho do vocabulário total do corpus.        
+2. Vetorização (Espaço Vetorial): Cada documento e a query são convertidos em vetores numéricos num espaço n-dimensional, onde n é o tamanho do vocabulário total do corpus.        
     - Fórmula TF: $$TF(t,d) = \frac{count(t,d)}{\text{Total de termos em } d}$$
     - Fórmula IDF: $$IDF(t, D) = \log_{10}\left(\frac{N}{df_t}\right)$$
     
-    3. Cálculo de Similaridade: Para evitar que documentos mais longos tenham vantagem apenas por terem mais palavras, utiliza-se a Similaridade do Cosseno para medir o ângulo entre o vetor da query (q) e o vetor do documento (d):
-        $$\text{sim}(q, d) = \frac{q \cdot d}{\|q\| \|d\|}$$
+3. Cálculo de Similaridade: Para evitar que documentos mais longos tenham vantagem apenas por terem mais palavras, utiliza-se a Similaridade do Cosseno para medir o ângulo entre o vetor da query (q) e o vetor do documento (d):
+    $$\text{sim}(q, d) = \frac{q \cdot d}{\|q\| \|d\|}$$
         
 ### Exemplo de Execução
 Corpus:
