@@ -16,11 +16,11 @@ O pipeline de processamento segue os seguintes passos:
         - Remoção de stop words (palavras gramaticais sem valor semântico como "the", "is", "in").
         
     2. Vetorização (Espaço Vetorial): Cada documento e a query são convertidos em vetores numéricos num espaço n-dimensional, onde n é o tamanho do vocabulário total do corpus.        
-    - Fórmula TF: $$TF(t,d) = \frac{\text{contagem}(t,d)}{\text{total de termos em } d}$$
-    - Fórmula IDF: $$IDF(t, D) = \log_{10}\left(\frac{N}{df_t}\right)$$
+    - Fórmula TF: $$\text{TF}(t,d) = \frac{\text{count}(t,d)}{\text{total de termos em } d}$$
+    - Fórmula IDF: $$\text{IDF}(t, D) = \log_{10}\left(\frac{N}{df_t}\right)$$
     
     3. Cálculo de Similaridade: Para evitar que documentos mais longos tenham vantagem apenas por terem mais palavras, utiliza-se a Similaridade do Cosseno para medir o ângulo entre o vetor da query (q) e o vetor do documento (d):
-        $$\text{sim}(q, d) = \frac{\sum_{i=1}^{n} q_i d_i}{\sqrt{\sum_{i=1}^{n} q_i^2} \sqrt{\sum_{i=1}^{n} d_i^2}}$$
+        $$\text{sim}(q, d) = \frac{q \cdot d}{\|q\| \|d\|}$$
         
 ### Exemplo de Execução
 Corpus:
